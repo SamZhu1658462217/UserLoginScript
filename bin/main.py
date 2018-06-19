@@ -43,8 +43,16 @@ if __name__ == '__main__':
         username,password = loginPage()
         if tools.checkUserExists(username,cp):
             user_status_dic[username] = 3
+        else:
+            print('\033[31mUser: {} is not exists!\033[0m'.format(username))
+            continue
         password = tools.getPasswordMd5(password)
+        print(password)
         if tools.checkUserPasswd(username,password,cp):
             menu(username)
+            break
         else:
-            print('User')
+            if user_status_dic[username] == 3:
+                
+            print('Password is Wrong,please retry')
+            user_status_dic[username]-=1
