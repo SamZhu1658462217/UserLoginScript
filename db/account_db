@@ -1,0 +1,10 @@
+# 这是业务数据文件你就当它是二进制的，无法人工修改。
+[default]
+
+[dachenzi]
+password = e10adc3949ba59abbe56e057f20f883e
+status = 1
+
+[hello]
+password = e10adc3949ba59abbe56e057f20f883e
+status = 1
