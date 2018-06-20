@@ -1,3 +1,7 @@
+# __author__: Dahl hin
+# __time__: 2018/06/20
+# _*_ coding:utf-8 _*_
+
 import hashlib
 import time
 import os
@@ -32,6 +36,12 @@ def checkUserPasswd(username,password,config_obj):
     return False
 
 def checkUserExists(username,config_obj):
+    '''
+    check User Exists
+    :param username: UserName
+    :param config_obj: configparser object
+    :return: Verification result
+    '''
 
     if username in config_obj.sections():
         return True
@@ -81,7 +91,7 @@ def writeLog(username,info):
     login_date = time.strftime("%Y-%m-%d", time.localtime())
     login_time = time.strftime("%H:%M:%S", time.localtime())
     login_info = '{} {} Username: {} , Result: {} \n'.format(login_date,login_time,username,info)
-    log_file ='{}/login_{}.txt'.format(settings.log_dir,login_date)
+    log_file ='{}/{}_{}.txt'.format(settings.log_dir,settings.logfile_prefix,login_date)
     if os.path.exists(log_file):
         status = 'a'
     else:

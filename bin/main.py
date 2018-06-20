@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# __author__: Dahl hin
+# __time__: 2018/06/20
+# _*_ coding:utf-8 _*_
+
+
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.split(os.path.abspath(__file__))[0]))
