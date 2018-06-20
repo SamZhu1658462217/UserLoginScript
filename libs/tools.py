@@ -1,6 +1,9 @@
 import hashlib
 import time
 import os
+import sys
+sys.path.append(os.path.dirname(os.path.split(os.path.abspath(__file__))[0]))
+from conf import settings
 
 def getPasswordMd5(string):
     '''
@@ -34,7 +37,6 @@ def checkUserExists(username,config_obj):
         return True
     return False
 
-
 def getUserStatus(username,config_obj):
     '''
     Check if the user is locked
@@ -58,15 +60,15 @@ def setUserStatus(username,status,config_obj,configfile):
     '''
 
     if status == 'lock':
-        accout_status = 1
+        accout_status = '1'
     elif status == 'unlock':
-        accout_status = 0
+        accout_status = '0'
     else:
         raise ValueError('Parser must be lock/unlock')
 
-    with open(configfile) as f:
+    with open(configfile,'w') as f:
         config_obj.set(username,'status',accout_status)
-        config_obj.write(f,'w')
+        config_obj.write(f)
 
 def writeLog(username,info):
     '''
@@ -78,8 +80,8 @@ def writeLog(username,info):
 
     login_date = time.strftime("%Y-%m-%d", time.localtime())
     login_time = time.strftime("%H:%M:%S", time.localtime())
-    login_info = '{} {} Username: {} , Result: {}'.format(login_date,login_time,username,info)
-    log_file = '../logs/login_{}.txt'.format(login_date)
+    login_info = '{} {} Username: {} , Result: {} \n'.format(login_date,login_time,username,info)
+    log_file ='{}/login_{}.txt'.format(settings.log_dir,login_date)
     if os.path.exists(log_file):
         status = 'a'
     else:

@@ -4,3 +4,5 @@ login_retry = 3
 # 用户数据库文件
 accout_file = "../db/account_db"
 
+# 日志目录
+log_dir = "../logs"
